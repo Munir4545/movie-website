@@ -2,6 +2,7 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Pagination } from "react-bootstrap";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Movie, ApiResponse } from "./types";
+import { options } from "../apikey";
 
 type MovieSearch = {
   inputValue: string;
@@ -23,13 +24,7 @@ export function Search(props: MovieSearch) {
     if (queryParam) {
       setInputValue(queryParam);
       // Fetch data based on the new query here if needed
-      const options = {
-        method: 'GET',
-        headers: {
-          accept: 'application/json',
-          Authorization: 'Bearer YOUR_API_KEY'
-        }
-      };
+      
 
       fetch(`https://api.themoviedb.org/3/search/multi?query=${queryParam}&include_adult=false&language=en-US&page=1`, options)
         .then(response => response.json())

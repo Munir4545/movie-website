@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import { Reviews } from "./Reviews";
 import { Movie, Show, ShowEp } from "./types";
+import { options } from "../apikey";
 
 type MovieProps = {
   useMovie: Movie | null;
@@ -19,13 +20,7 @@ export function MovieWatch(props: MovieProps) {
   let { movieId } = useParams();
 
   useEffect(() => {
-    const options = {
-      method: 'GET',
-      headers: {
-        accept: 'application/json',
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxNTM3ZWM1ZjRiMmM4ODA4NWU3YzhkYTg2ZDUzMjdlNiIsInN1YiI6IjY1ZDE4ZWMxYWE2NTllMDE4NjQzMjk5NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.5SjVl-XKJnnLoJ3z-_Fd-ZDFOTRiUUbLhM8gHTqrgnE'
-      }
-    };
+    
   
     console.log('Fetching data for:', movieId, selectedSeason, selectedEp);
   

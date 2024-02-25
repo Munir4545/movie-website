@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Review } from "./types";
 import { useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
+import { options } from "../apikey";
 
 type ReviewProps = {
     movieId: string | undefined
@@ -12,14 +13,7 @@ type ReviewProps = {
 export function Reviews(props: ReviewProps) {
     const [movieReviews, setMovieReviews] = useState<Review[]>([]);
     useEffect(() => {
-        const options = {
-            method: 'GET',
-            headers: {
-              accept: 'application/json',
-              Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxNTM3ZWM1ZjRiMmM4ODA4NWU3YzhkYTg2ZDUzMjdlNiIsInN1YiI6IjY1ZDE4ZWMxYWE2NTllMDE4NjQzMjk5NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.5SjVl-XKJnnLoJ3z-_Fd-ZDFOTRiUUbLhM8gHTqrgnE'
-            }
-          };
-          
+
           fetch(`https://api.themoviedb.org/3/movie/${props.movieId}/reviews?language=en-US&page=1`, options)
           .then(response => {
             if (!response.ok) {
@@ -50,6 +44,7 @@ export function Reviews(props: ReviewProps) {
               })
               .catch(err => console.error(err));
           });
+          
     }, []);
 
 
