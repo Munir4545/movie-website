@@ -5,7 +5,7 @@ import { Movie, Show,  } from "./types";
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { options } from "../apikeys";
+import { options } from "../apikey";
 
 
 type ShowProps = {
