@@ -15,6 +15,7 @@ export interface Movie {
   export interface Show {
     id: number;
     name: string;
+    original_name: string;
     overview: string;
     poster_path: string;
     backdrop_path: string;

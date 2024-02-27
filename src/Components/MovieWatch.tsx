@@ -20,32 +20,32 @@ export function MovieWatch(props: MovieProps) {
   let { movieId } = useParams();
 
   useEffect(() => {
-    
-  
+
+
     console.log('Fetching data for:', movieId, selectedSeason, selectedEp);
-  
+
     fetch(`https://api.themoviedb.org/3/tv/${movieId}?language=en-US`, options)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Not found');
-      }
-      return response.json();
-    })
-    .then(response => {
-      console.log('Fetch successful:', response);
-      if (response.seasons && response.seasons.length > 0) {
-        setSeasonEp(response.seasons);
-        setContentSrc(`https://moviesapi.club/tv/${movieId}-${selectedSeason}-${selectedEp}`);
-      } else {
-        throw new Error('No seasons data');
-      }
-    })
-    .catch(error => {
-      console.error('Fetch error:', error);
-      setContentSrc(`https://moviesapi.club/movie/${movieId}`);
-    });
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Not found');
+        }
+        return response.json();
+      })
+      .then(response => {
+        console.log('Fetch successful:', response);
+        if (response.seasons && response.seasons.length > 0) {
+          setSeasonEp(response.seasons);
+          setContentSrc(`https://vidsrc.me/embed/tv?tmdb=${movieId}&season=${selectedSeason}&episode=${selectedEp}`);
+        } else {
+          throw new Error('No seasons data');
+        }
+      })
+      .catch(error => {
+        console.error('Fetch error:', error);
+        setContentSrc(`https://vidsrc.me/embed/movie?tmdb=${movieId}`);
+      });
   }, [movieId, selectedSeason, selectedEp]);
-  
+
 
   const handleSeasonChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedSeason(parseInt(e.target.value));
@@ -55,11 +55,12 @@ export function MovieWatch(props: MovieProps) {
   const handleEpisodeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedEp(parseInt(e.target.value));
   };
-  
+
+  console.log("show name", useShow?.name)
   return (
     <>
       <div className="card bg-myColor text-white rounded p-3 m-3 border-secondary">
-        <h1 className="align-items-center justify-content-center">{useMovie?.title || useShow?.name}</h1>
+        <h1 className="align-items-center justify-content-center">{useMovie?.title || useShow?.original_name}</h1>
         <h2>{useMovie?.release_date || useShow?.first_air_date}</h2>
         <p className="">Description: {useMovie?.overview || useShow?.overview}</p>
         <p> Rating &#11088;: {useMovie?.vote_average || useShow?.vote_average} out of {useMovie?.vote_count || useShow?.vote_count}</p>
@@ -75,7 +76,7 @@ export function MovieWatch(props: MovieProps) {
         ></iframe>
       </div>
       {/* Additional logic to display all available episodes can be added here */}
-
+      <div className="box">
       {seasonEp && seasonEp.length > 0 && (
         <select value={selectedSeason} onChange={handleSeasonChange}>
           {seasonEp.map((season) => (
@@ -94,6 +95,7 @@ export function MovieWatch(props: MovieProps) {
           ))}
         </select>
       )}
+      </div>
       <Reviews movieId={movieId}></Reviews>
     </>
   );

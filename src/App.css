@@ -48,3 +48,34 @@ input.custom-placeholder::placeholder {
   .slick-dots li.slick-active button:before {
     color:White !important;
   }
+
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #004882;
+  }
+  
+  .box select {
+    background-color: #2a2a2e;
+    color: white;
+    padding: 12px;
+    width: 250px;
+    border: none;
+    font-size: 20px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    -webkit-appearance: button;
+    appearance: button;
+    outline: none;
+  }
+  
+
+  
+  .box:hover::before {
+    color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .box select option {
+    padding: 30px;
+  }

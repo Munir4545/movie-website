@@ -19,9 +19,8 @@ export function Header() {
               <NavDropdown title="Profile" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">My Movies</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">Setting</NavDropdown.Item>
-                <NavDropdown.Item>Log Out</NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">Github</NavDropdown.Item>
+                <NavDropdown.Item href="https://github.com/Munir4545/movie-website">Github</NavDropdown.Item>
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>
