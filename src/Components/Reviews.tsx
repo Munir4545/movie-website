@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Review } from "./types";
 import { useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
-import { options } from "../apikey";
+import { options } from "../apikeys";
 
 type ReviewProps = {
     movieId: string | undefined
@@ -13,7 +13,8 @@ type ReviewProps = {
 export function Reviews(props: ReviewProps) {
     const [movieReviews, setMovieReviews] = useState<Review[]>([]);
     useEffect(() => {
-
+        
+          
           fetch(`https://api.themoviedb.org/3/movie/${props.movieId}/reviews?language=en-US&page=1`, options)
           .then(response => {
             if (!response.ok) {

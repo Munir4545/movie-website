@@ -24,7 +24,6 @@ export function Search(props: MovieSearch) {
     if (queryParam) {
       setInputValue(queryParam);
       // Fetch data based on the new query here if needed
-      
 
       fetch(`https://api.themoviedb.org/3/search/multi?query=${queryParam}&include_adult=false&language=en-US&page=1`, options)
         .then(response => response.json())

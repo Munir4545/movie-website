@@ -32,6 +32,7 @@ export function Home(props: MovieProps) {
     const navigate = useNavigate();
 
     useEffect (() => {
+          
          fetch(`https://api.themoviedb.org/3/trending/movie/week?language=en-US`, options)
             .then(response => response.json())
             .then(response => { setPopularMovies(response.results); console.log(response.results)})
