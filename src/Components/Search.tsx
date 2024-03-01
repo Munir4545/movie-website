@@ -86,7 +86,7 @@ export function Search(props: MovieSearch) {
 
   return (
     <>
-    <div className="col-xs-4">
+    <div className="col-xs-4 mt-4 mb-4">
       <input
         type="text"
         className="form-control bg-dark border-secondary text-white rounded-pill custom-placeholder"
@@ -100,7 +100,7 @@ export function Search(props: MovieSearch) {
       <div className="container mt-3" >
      <div className="row align-items-center justify-content-center">
     {searchedMovies.results.map(movie => (
-        <div key={movie.id} className="border-secondary col-md-2 mb-3 mx-2 text-white" style={{cursor: 'pointer'}} onClick={() => handleMovieSelect(movie)}>
+        <div key={movie.id} className="border-secondary col-md-2 mb-3 mx-2 text-white thumbail" style={{cursor: 'pointer'}} onClick={() => handleMovieSelect(movie)}>
         <img className="card-img-top rounded " src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}/>
             <div className="card-body">
           
@@ -110,13 +110,13 @@ export function Search(props: MovieSearch) {
       ))}
       </div> 
       <div className="justify-content-center d-flex">
-      <Pagination className="bg-dark">
+      {/* <Pagination className="bg-dark">
         <Pagination.First onClick={() => handlePageChange(1)} disabled={searchedMovies.page === 1} />
         <Pagination.Prev onClick={() => handlePageChange(searchedMovies.page - 1)} disabled={searchedMovies.page === 1} />
-        {/* You can add Pagination.Item here for specific page numbers */}
+        
         <Pagination.Next onClick={() => handlePageChange(searchedMovies.page + 1)} disabled={searchedMovies.page === totalPages} />
         <Pagination.Last onClick={() => handlePageChange(totalPages)} disabled={currentPage === totalPages} />
-      </Pagination>
+      </Pagination> */}
       </div>
     </div>
      

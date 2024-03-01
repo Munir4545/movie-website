@@ -69,8 +69,6 @@ input.custom-placeholder::placeholder {
     outline: none;
   }
   
-
-  
   .box:hover::before {
     color: rgba(255, 255, 255, 0.6);
     background-color: rgba(255, 255, 255, 0.2);
@@ -78,4 +76,44 @@ input.custom-placeholder::placeholder {
   
   .box select option {
     padding: 30px;
+  }
+
+  .thumbail img:hover {
+    box-shadow: 0 0 20px rgb(51, 36, 255, 2);
+    transform: scale(1.1);
+    transition: 0.3s;
+    z-index: 102;
+  }
+  .thumbail img {
+    transition: 0.45s;
+  }
+
+
+  .player:hover {
+    box-shadow: 0 0 20px rgb(51, 36, 255);
+    transform: scale(1.005);
+    transition: 0.3s;
+    z-index: 102;
+  }
+
+  .player {
+    transition: 0.45s;
+  }
+
+  .scrollwheel {
+    box-shadow: 0 0 10px rgb(23, 23, 27);
+
+  }
+
+  .wheelimg img:hover {
+    box-shadow: 0 0 20px rgb(51, 36, 255);
+    transform: scale(1.005);
+    transition: 0.3s;
+    z-index: 102;
+  }
+
+  .profile-pic {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
   }

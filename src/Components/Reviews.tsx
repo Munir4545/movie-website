@@ -50,21 +50,20 @@ export function Reviews(props: ReviewProps) {
 
 
     return (
-        <div className="container mt-5">
-            <div className="row">
-                {movieReviews.map(review => (
-                    <div key={review.id} className="col-md-4 mb-3">
-                        <div className="border-secondary bg-myColor text-white p-3 border rounded" style={{ wordBreak: 'break-word', overflow: 'hidden' }}>
-                            <img className="rounded-pill img-fluid" src={`https://image.tmdb.org/t/p/w500/${review.author_details.avatar_path}`} alt={review.author_details.username} />
-                            <div className="mt-3">
-                                <h4 className="text-white">{review.author_details.rating}/10</h4>
-                                <p className="text-white">{review.author_details.username}</p>
-                                <ReactMarkdown className="text-white small">{review.content}</ReactMarkdown>                                {/* Render other movie details as needed */}
-                            </div>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </div>
+      <div className="container mt-5">
+      {movieReviews.map(review => (
+          <div key={review.id} className="mb-3">
+              <div className="border-secondary bg-myColor text-white p-3 border rounded" style={{ wordBreak: 'break-word', overflow: 'hidden' }}>
+                  <img className=" img-fluid profile-pic" src={`https://image.tmdb.org/t/p/w500/${review.author_details.avatar_path}`} alt={review.author_details.username} />
+                  <div className="mt-3">
+                      <h4 className="text-white">{review.author_details.rating}/10</h4>
+                      <p className="text-white">{review.author_details.username}</p>
+                      <ReactMarkdown className="text-white small">{review.content}</ReactMarkdown>
+                      {/* Render other movie details as needed */}
+                  </div>
+              </div>
+          </div>
+      ))}
+  </div>
     );
 }

@@ -57,11 +57,11 @@ export function Shows(props: ShowProps) {
 
   return (
     <div className="container mt-3">
-        <div className="slider-container text-white mb-3 border-secondary border rounded-pill">
+        <div className="slider-container text-white mb-3 scrollwheel rounded">
       <Slider {...settings} className="mb-4">
         {popularShows.slice(0, 5).map((show, index) => (
-          <div key={show.id} className="mb-1">
-            <img className="rounded-circle" src={`https://image.tmdb.org/t/p/w500/${show.backdrop_path}`} alt={`${show.name} slide`} style={{cursor: 'pointer'}} onClick={() => handleShowSelect(show)}/>
+          <div key={show.id} className="mb-1 mt-3 wheelimg">
+            <img className="rounded" src={`https://image.tmdb.org/t/p/w500/${show.backdrop_path}`} alt={`${show.name} slide`} style={{cursor: 'pointer'}} onClick={() => handleShowSelect(show)}/>
             <h6 className="text-white" style={{ textAlign: 'center' }}>{show.name}</h6>
           </div>
         ))}
@@ -70,8 +70,8 @@ export function Shows(props: ShowProps) {
      <div className="row align-items-center justify-content-center">
      <h3 className="text-white mt-3 mb-3"> Top of The Week</h3>
     {popularShows.map(show => (
-        <div key={show.id} className="border-secondary col-md-2 mb-3 mx-2 text-white" style={{cursor: 'pointer'}} onClick={() => handleShowSelect(show)}>
-        <img className="card-img-top rounded " src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`}/>
+        <div key={show.id} className="border-secondary col-md-2 mb-3 mx-2 text-white thumbail" style={{cursor: 'pointer'}} onClick={() => handleShowSelect(show)}>
+        <img className="card-img-top rounded" src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`}/>
             <div className="card-body">
         
           {/* Render other movie details as needed */}

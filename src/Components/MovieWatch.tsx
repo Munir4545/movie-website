@@ -65,7 +65,7 @@ export function MovieWatch(props: MovieProps) {
         <p className="">Description: {useMovie?.overview || useShow?.overview}</p>
         <p> Rating &#11088;: {useMovie?.vote_average || useShow?.vote_average} out of {useMovie?.vote_count || useShow?.vote_count}</p>
       </div>
-      <div className="responsive">
+      <div className="responsive player">
         <iframe
           key={useMovie?.id || useShow?.id} // Use key to force re-render
           src={contentSrc}
@@ -76,7 +76,7 @@ export function MovieWatch(props: MovieProps) {
         ></iframe>
       </div>
       {/* Additional logic to display all available episodes can be added here */}
-      <div className="box">
+      <div className="box mt-4">
       {seasonEp && seasonEp.length > 0 && (
         <select value={selectedSeason} onChange={handleSeasonChange}>
           {seasonEp.map((season) => (
