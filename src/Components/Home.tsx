@@ -21,7 +21,9 @@ const settings = {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
-    waitForAnimate: false
+    waitForAnimate: false,
+    variableWidth: true,
+    variableHeight: true,
   };
 
 
@@ -30,14 +32,13 @@ export function Home(props: MovieProps) {
     const [popularMovies, setPopularMovies] = useState<Movie[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
     const navigate = useNavigate();
-
+    
     useEffect (() => {
           
          fetch(`https://api.themoviedb.org/3/trending/movie/week?language=en-US`, options)
             .then(response => response.json())
-            .then(response => { setPopularMovies(response.results); console.log(response.results)})
+            .then(response => { setPopularMovies(response.results); console.log(response.results); })
             .catch(err => console.error(err));
-          
         }, [currentPage]);
 
         const handlePageChange = (pageNumber: number) => {
@@ -54,10 +55,11 @@ export function Home(props: MovieProps) {
     
 
   return (
-    <div className="container mt-3">
+
+    <div className="container">
         <div className="slider-container text-white mb-3 scrollwheel rounded">
       <Slider {...settings} className="mb-4">
-        {popularMovies.slice(0, 5).map((movie, index) => (
+        {popularMovies.slice(0, 10).map((movie, index) => (
           <div key={movie.id} className="mb-1 mt-3 wheelimg">
             <img className="rounded" src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`} alt={`${movie.title} slide`} style={{cursor: 'pointer'}} onClick={() => handleMovieSelect(movie)}/>
             <h6 className="text-white" style={{ textAlign: 'center' }}>{movie.title}</h6>

@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Pagination } from "react-bootstrap";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Movie, ApiResponse } from "./types";
+import { Movie, ApiResponse, Show } from "./types";
 import { options } from "../apikey";
 
 type MovieSearch = {
@@ -9,6 +9,7 @@ type MovieSearch = {
   setInputValue: Dispatch<SetStateAction<string>>;
   setMovie: (movie: Movie | null) => void;
   useMovie: Movie | null;
+  setShow: (show: Show | null) => void;
 };
 
 export function Search(props: MovieSearch) {
@@ -78,12 +79,20 @@ export function Search(props: MovieSearch) {
     setCurrentPage(pageNumber);
   };
 
-  const handleMovieSelect = (movie: Movie) => {
-    props.setMovie(movie); // Set the movie ID in the state
-    console.log(props.useMovie);
-    navigate(`/watch/${movie.id}`); // Navigate to the MovieWatch component
-};
+  const handleMovieSelect = (result: Movie | Show) => {
+    if ('title' in result) {
+      props.setMovie(result); 
+      props.setShow(null);  
+    } else {
+      props.setShow(result); 
+      props.setMovie(null);  
+    }
+    navigate(`/watch/${result.id}`);
+  };
 
+
+
+  console.log("searched", searchedMovies);
   return (
     <>
     <div className="col-xs-4 mt-4 mb-4">

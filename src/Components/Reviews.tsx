@@ -50,11 +50,18 @@ export function Reviews(props: ReviewProps) {
 
 
     return (
-      <div className="container mt-5">
+      <div className="mt-5">
       {movieReviews.map(review => (
           <div key={review.id} className="mb-3">
-              <div className="border-secondary bg-myColor text-white p-3 border rounded" style={{ wordBreak: 'break-word', overflow: 'hidden' }}>
-                  <img className=" img-fluid profile-pic" src={`https://image.tmdb.org/t/p/w500/${review.author_details.avatar_path}`} alt={review.author_details.username} />
+              <div className=" bg-myColor text-white p-3 rounded" style={{ wordBreak: 'break-word', overflow: 'hidden' }}>
+                <div className="landscape">
+                  <img 
+                  className=" img-fluid profile-pic" 
+                  src={ review.author_details.avatar_path
+                    ? `https://image.tmdb.org/t/p/w500/${review.author_details.avatar_path}`
+                    : './defaultprofile.jpg'} 
+                  alt={review.author_details.username} />
+                  </div>
                   <div className="mt-3">
                       <h4 className="text-white">{review.author_details.rating}/10</h4>
                       <p className="text-white">{review.author_details.username}</p>

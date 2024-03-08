@@ -6,26 +6,6 @@ import { Movie, Show, ShowEp } from "./types";
 import { options } from "../apikey";
 
 
-import { MovieMedia, makeProviders, makeStandardFetcher, targets } from '@movie-web/providers';
-
-const providers = makeProviders({
-  fetcher: makeStandardFetcher(fetch),
-  target: targets.BROWSER, // Choose the appropriate target based on your environment
-  consistentIpForRequests: true,
-});
-
-const media: MovieMedia = {
-  type: 'movie',
-  title: "Hamilton",
-  releaseYear: 2020,
-  tmdbId: "556574"
-}
-  
-const output = await providers.runAll({
-  media: media
-})
-
-
 type MovieProps = {
   useMovie: Movie | null;
   setMovie: (movie: Movie | null) => void;
@@ -83,8 +63,8 @@ export function MovieWatch(props: MovieProps) {
   console.log("show name", useShow?.name)
   return (
     <>
-      <div className="card bg-myColor text-white rounded p-3 m-3 border-secondary">
-        <h1 className="align-items-center justify-content-center">{useMovie?.title || useShow?.original_name}</h1>
+      <div className="card bg-myColor text-white rounded p-3 m-3">
+        <h1 className="align-items-center justify-content-center">{useMovie?.title || useShow?.name}</h1>
         <h2>{useMovie?.release_date || useShow?.first_air_date}</h2>
         <p className="">Description: {useMovie?.overview || useShow?.overview}</p>
         <p> Rating &#11088;: {useMovie?.vote_average || useShow?.vote_average} out of {useMovie?.vote_count || useShow?.vote_count}</p>

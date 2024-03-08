@@ -35,7 +35,7 @@ function App() {
         <Header/>
         <div className='content-wrapper' style={{marginLeft: "12.4em"}}>
         <Routes>
-          <Route path='/search' element={<Search inputValue={inputValue} setInputValue={setInputValue} useMovie={useMovie} setMovie={handleSetMovie} />} />
+          <Route path='/search' element={<Search inputValue={inputValue} setShow={handleSetShow} setInputValue={setInputValue} useMovie={useMovie} setMovie={handleSetMovie} />} />
           <Route path='/movies' element={<Home useMovie={useMovie} setShow={handleSetShow} setMovie={handleSetMovie} />} />
           <Route path='/shows' element={<Shows useShow={useShow} setShow={handleSetShow} setMovie={handleSetMovie}/>} />
           <Route path='/watch/:movieId' element={<MovieWatch useShow={useShow} useMovie={useMovie} setMovie={handleSetMovie}/>} />

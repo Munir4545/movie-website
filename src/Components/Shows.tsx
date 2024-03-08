@@ -15,15 +15,17 @@ type ShowProps = {
 }
 
 const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    waitForAnimate: false
-  };
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 3000,
+  waitForAnimate: false,
+  variableWidth: true,
+  variableHeight: true
+};
 
 
 export function Shows(props: ShowProps) {
@@ -56,10 +58,10 @@ export function Shows(props: ShowProps) {
     
 
   return (
-    <div className="container mt-3">
+    <div className="container">
         <div className="slider-container text-white mb-3 scrollwheel rounded">
       <Slider {...settings} className="mb-4">
-        {popularShows.slice(0, 5).map((show, index) => (
+        {popularShows.slice(0, 10).map((show, index) => (
           <div key={show.id} className="mb-1 mt-3 wheelimg">
             <img className="rounded" src={`https://image.tmdb.org/t/p/w500/${show.backdrop_path}`} alt={`${show.name} slide`} style={{cursor: 'pointer'}} onClick={() => handleShowSelect(show)}/>
             <h6 className="text-white" style={{ textAlign: 'center' }}>{show.name}</h6>
