@@ -5,11 +5,33 @@ import { Reviews } from "./Reviews";
 import { Movie, Show, ShowEp } from "./types";
 import { options } from "../apikey";
 
+
+import { MovieMedia, makeProviders, makeStandardFetcher, targets } from '@movie-web/providers';
+
+const providers = makeProviders({
+  fetcher: makeStandardFetcher(fetch),
+  target: targets.BROWSER, // Choose the appropriate target based on your environment
+  consistentIpForRequests: true,
+});
+
+const media: MovieMedia = {
+  type: 'movie',
+  title: "Hamilton",
+  releaseYear: 2020,
+  tmdbId: "556574"
+}
+  
+const output = await providers.runAll({
+  media: media
+})
+
+
 type MovieProps = {
   useMovie: Movie | null;
   setMovie: (movie: Movie | null) => void;
   useShow: Show | null;
 };
+
 
 export function MovieWatch(props: MovieProps) {
   const { useMovie, useShow } = props;
@@ -18,6 +40,7 @@ export function MovieWatch(props: MovieProps) {
   const [selectedEp, setSelectedEp] = useState<number>(1);
   const [selectedSeason, setSelectedSeason] = useState<number>(1);
   let { movieId } = useParams();
+  
 
   useEffect(() => {
 
@@ -55,6 +78,7 @@ export function MovieWatch(props: MovieProps) {
   const handleEpisodeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedEp(parseInt(e.target.value));
   };
+
 
   console.log("show name", useShow?.name)
   return (

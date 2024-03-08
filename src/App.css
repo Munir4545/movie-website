@@ -1,4 +1,141 @@
+::-webkit-scrollbar {
+  display: none;
+}
 
+
+.navbar {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  height: 100vh !important;
+  width: 200px !important;
+  z-index: 1000 !important;
+  overflow-x: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  background: linear-gradient(90deg, rgb(34, 34, 37) 24%, rgb(39, 48, 73) 77%) !important;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar-brand {
+  margin: 1rem;
+}
+
+.navbar-nav {
+  width: 100%;
+  margin-top: 1rem;
+  margin-left: 3rem;
+}
+
+.navbar-nav .nav-link {
+  padding-left: 1rem;
+}
+
+.navbar-collapse {
+  width: 100%;
+  flex-grow: 1;
+}
+
+#titlebar {
+  z-index: 999;
+  opacity: 1 !important;
+  display: block;
+  position: fixed;
+  height: 32px;
+  width: calc(100% - 2px); /*Compensate for body 1px border*/
+  background: rgb(64,69,117);
+background: linear-gradient(90deg, rgba(64,69,117,1) 24%, #001c69 77%);
+}
+
+#titlebar #drag-region {
+  width: 100%;
+  height: 100%;
+  -webkit-app-region: drag;
+}
+
+#root {
+  margin: 0;
+  padding: 0;
+}
+
+#main {
+  height: calc(100vh - 32px); /* Subtract the height of the titlebar */
+  margin-top: 32px;
+  padding: 0;
+  overflow-y: auto;
+}
+
+#titlebar {
+  color: #FFF;
+}
+
+#window-controls {
+  display: grid;
+  grid-template-columns: repeat(3, 46px);
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+}
+
+#window-controls .button {
+  grid-row: 1 / span 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+#min-button {
+  grid-column: 1;
+}
+#max-button, #restore-button {
+  grid-column: 2;
+}
+#close-button {
+  grid-column: 3;
+}
+
+@media (-webkit-device-pixel-ratio: 1.5), (device-pixel-ratio: 1.5),
+(-webkit-device-pixel-ratio: 2), (device-pixel-ratio: 2),
+(-webkit-device-pixel-ratio: 3), (device-pixel-ratio: 3) {
+  #window-controls .icon {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+#window-controls {
+  -webkit-app-region: no-drag;
+}
+
+#window-controls .button {
+  user-select: none;
+}
+#window-controls .button:hover {
+  background: rgba(255,255,255,0.1);
+}
+#window-controls .button:active {
+  background: rgba(255,255,255,0.2);
+}
+
+#close-button:hover {
+  background: #E81123 !important;
+}
+#close-button:active {
+  background: #F1707A !important;
+}
+#close-button:active .icon {
+  filter: invert(1);
+}
+
+#restore-button {
+  display: none !important;
+}
 
 .responsive {
   width: 100%;
@@ -41,7 +178,8 @@ input.custom-placeholder::placeholder {
 }
 
 .bg-myColor {
-  background-image: linear-gradient(to right,#000516c9,#011c67 )
+  background: rgb(64,69,117);
+background: linear-gradient(90deg, rgba(64,69,117,1) 24%, rgba(1,28,105,1) 77%);
   }
 
 
@@ -117,3 +255,6 @@ input.custom-placeholder::placeholder {
     height: 70px;
     border-radius: 50%;
   }
+ 
+
+  

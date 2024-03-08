@@ -6,13 +6,12 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 
 export function Header() {
   return (
-    <header>
-      <Navbar expand="lg" data-bs-theme="dark" bg="myColor" style={{ boxShadow: "0 4px 8px rgba(0,0,0,0.1)" }}>
-        <Container>
-          <Navbar.Brand href="/home">Movie Index</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
+    <Navbar expand="lg" data-bs-theme="dark" bg="myColor" className="navbar rounded">
+        <Navbar.Brand href="/home">Movie Index</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Container fluid>
+            <Nav className="flex-column">
               <Nav.Link href="/movies">Movies</Nav.Link>
               <Nav.Link href="/shows">Shows</Nav.Link>
               <Nav.Link href="/search">Index</Nav.Link>
@@ -23,9 +22,8 @@ export function Header() {
                 <NavDropdown.Item href="https://github.com/Munir4545/movie-website">Github</NavDropdown.Item>
               </NavDropdown>
             </Nav>
-          </Navbar.Collapse>
-        </Container>
+          </Container>
+        </Navbar.Collapse>
       </Navbar>
-    </header>
   );
 }
