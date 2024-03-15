@@ -95,10 +95,10 @@ export function Search(props: MovieSearch) {
   console.log("searched", searchedMovies);
   return (
     <>
-    <div className="col-xs-4 mt-4 mb-4">
+    <div className="col-xs-4 mt-4 mb-4 p-5">
       <input
         type="text"
-        className="form-control bg-dark border-secondary text-white rounded-pill custom-placeholder"
+        className="form-control searchInput border-secondary text-white rounded-pill custom-placeholder"
         placeholder="Search for Movie"
         aria-label="Search"
         value={inputValue} // Use inputValue for the input element

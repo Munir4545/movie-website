@@ -61,14 +61,19 @@ export function Home(props: MovieProps) {
       <Slider {...settings} className="mb-4">
         {popularMovies.slice(0, 10).map((movie, index) => (
           <div key={movie.id} className="mb-1 mt-3 wheelimg">
-            <img className="rounded" src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`} alt={`${movie.title} slide`} style={{cursor: 'pointer'}} onClick={() => handleMovieSelect(movie)}/>
-            <h6 className="text-white" style={{ textAlign: 'center' }}>{movie.title}</h6>
+            <img className="rounded" src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`} alt={`${movie.title} slide`}/>
+            <div className="translucent-background">
+                <h2 className="text-white">{movie.title}</h2>
+                <p>{movie.release_date.slice(0,4)} &#11088;{movie.vote_average.toFixed(1)}</p>
+                <p className="text-light">{movie.overview}</p>
+                <p className="rounded-pill px-4 py-3 bg-secondary text-center" style={{width: '11%', cursor:'pointer'}} onClick={() => handleMovieSelect(movie)}>Watch Now</p>
+              </div>
           </div>
         ))}
       </Slider>
       </div>
      <div className="row align-items-center justify-content-center">
-        <h3 className="text-white mt-3 mb-3"> Top of The Week</h3>
+        <h3 className="text-white mt-5 mb-4 text-center"> Top of The Week</h3>
     {popularMovies.map(movie => (
         <div key={movie.id} className="border-secondary col-md-2 mb-3 mx-2 text-white thumbail" style={{cursor: 'pointer'}} onClick={() => handleMovieSelect(movie)}>
         <img className="card-img-top rounded " src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}/>

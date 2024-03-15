@@ -63,13 +63,8 @@ export function MovieWatch(props: MovieProps) {
   console.log("show name", useShow?.name)
   return (
     <>
-      <div className="card bg-myColor text-white rounded p-3 m-3">
-        <h1 className="align-items-center justify-content-center">{useMovie?.title || useShow?.name}</h1>
-        <h2>{useMovie?.release_date || useShow?.first_air_date}</h2>
-        <p className="">Description: {useMovie?.overview || useShow?.overview}</p>
-        <p> Rating &#11088;: {useMovie?.vote_average || useShow?.vote_average} out of {useMovie?.vote_count || useShow?.vote_count}</p>
-      </div>
-      <div className="responsive player">
+      
+      <div className="responsive ">
         <iframe
           key={useMovie?.id || useShow?.id} // Use key to force re-render
           src={contentSrc}
@@ -99,6 +94,15 @@ export function MovieWatch(props: MovieProps) {
           ))}
         </select>
       )}
+      </div>
+      <div className=" bg-myColor text-white rounded p-3 m-3 descriptionContainer">
+        <img className="rounded" src={`https://image.tmdb.org/t/p/w500/${useMovie?.poster_path || useShow?.poster_path}`}/>
+        <div className="detail">
+        <h1 className="align-items-center justify-content-center">{useMovie?.title || useShow?.name}</h1>
+        <h2>{useMovie?.release_date || useShow?.first_air_date}</h2>
+        <p className="text-secondary"> {useMovie?.overview || useShow?.overview}</p>
+        <p> Rating: {useMovie?.vote_average || useShow?.vote_average}&#11088; out of {useMovie?.vote_count || useShow?.vote_count}</p>
+        </div>
       </div>
       <Reviews movieId={movieId}></Reviews>
     </>

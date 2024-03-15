@@ -8,7 +8,7 @@
   top: 0 !important;
   left: 0 !important;
   height: 100vh !important;
-  width: 200px !important;
+  width: 10% !important;
   z-index: 1000 !important;
   overflow-x: hidden !important;
   display: flex !important;
@@ -16,9 +16,22 @@
   background: linear-gradient(90deg, rgb(34, 34, 37) 24%, rgb(41, 42, 44) 77%) !important;
 }
 
+@media screen and (max-width: 800px) {
+  .navbar {
+      width: 20% !important; /* Adjust the width for smaller screens */
+  }
+}
+
 .content-wrapper {
   display: flex;
   flex-direction: column;
+  margin-left: 10%;
+}
+
+@media screen and (max-width: 800px) {
+  .content-wrapper {
+    margin-left: 20% !important; /* Adjust the width for smaller screens */
+  }
 }
 
 .navbar-brand {
@@ -244,12 +257,27 @@ input.custom-placeholder::placeholder {
 
   }
 
-  .wheelimg img:hover {
-    box-shadow: 0 0 20px rgb(51, 36, 255);
-    transform: scale(1.005);
-    transition: 0.3s;
-    z-index: 102;
+  .translucent-background {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
   }
+  
+  .translucent-background h6 {
+    margin: 0;
+  }
+  
+  .wheelimg {
+    position: relative;
+  }
+  
+  .wheelimg img {
+    transition: 0.3s;
+  }
+  
+
 
   .profile-pic {
     border-radius: 1%;
@@ -267,7 +295,7 @@ input.custom-placeholder::placeholder {
  
 
   .slick-slide {
-    width: 3.333%;
+    width: 3.3331%;
     height: 100%;
 }
 
@@ -278,6 +306,25 @@ input.custom-placeholder::placeholder {
 
 
 footer {
+  background: linear-gradient(90deg, rgb(36, 36, 36) 24%, rgb(22, 22, 22) 77%)
+}
+
+.descriptionContainer {
+  display: flex;
+  align-items: center;
+}
+
+.descriptionContainer .details {
+  margin-left: 20px;
+}
+
+.descriptionContainer img {
+  margin-right: 20px;
+  width: 15%;
+  height: 15%;
+}
+
+.searchInput {
   background: linear-gradient(90deg, rgb(36, 36, 36) 24%, rgb(22, 22, 22) 77%)
 }
 

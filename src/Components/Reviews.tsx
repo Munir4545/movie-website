@@ -50,7 +50,8 @@ export function Reviews(props: ReviewProps) {
 
 
     return (
-      <div className="mt-5">
+      <div className="mt-4">
+        <h2 className="text-white p-4">COMMENTS</h2>
       {movieReviews.map(review => (
           <div key={review.id} className="mb-3">
               <div className=" bg-myColor text-white p-3 rounded" style={{ wordBreak: 'break-word', overflow: 'hidden' }}>
