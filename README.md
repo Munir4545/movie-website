@@ -1,6 +1,4 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This website uses TMDB to fetch and display movie data and show data, Users can search for movies and shows as well as view comments for them
 
 ## Available Scripts
 
