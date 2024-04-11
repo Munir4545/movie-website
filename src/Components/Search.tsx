@@ -16,6 +16,7 @@ export function Search(props: MovieSearch) {
   const { inputValue, setInputValue } = props;
   const [searchedMovies, setSearchedMovies] = useState<ApiResponse>({ page: 1, results: [], total_pages: 0, total_results: 0 });
   const [currentPage, setCurrentPage] = useState(1);
+  const [isSearching, SetIsSearching] = useState(false);
   const navigate = useNavigate();
   const location = useLocation(); // Use the useLocation hook
   let totalPages = 0;

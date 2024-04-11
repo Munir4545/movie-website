@@ -17,7 +17,6 @@ function App() {
   const [useMovie, setMovie] = useState<Movie | null>(null);// State to hold the movie ID for the iframe
   const [useShow, setShow] = useState<Show | null>(null);
 
-
   const handleSetMovie = (movie: Movie | null) => {
     setMovie(movie);
   };
@@ -25,6 +24,8 @@ function App() {
   const handleSetShow = (show: Show | null) => {
     setShow(show);
   }
+
+
 
   return (
     

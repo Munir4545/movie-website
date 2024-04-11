@@ -32,6 +32,7 @@ export function Shows(props: ShowProps) {
 
     const [popularShows, setpopularShows] = useState<Show[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
+    const [isSearching, SetIsSearching] = useState(false);
     
     const navigate = useNavigate();
 

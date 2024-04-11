@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@cliqz/adblocker-electron": "^1.26.16",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@movie-web/providers": "^2.2.2",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",

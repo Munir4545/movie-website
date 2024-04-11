@@ -6,6 +6,8 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { options } from "../apikey";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 type MovieProps = {
   setMovie: (movie: Movie | null) => void;
@@ -31,13 +33,14 @@ export function Home(props: MovieProps) {
 
     const [popularMovies, setPopularMovies] = useState<Movie[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
+    const [isSearching, SetIsSearching] = useState(true);
     const navigate = useNavigate();
     
     useEffect (() => {
           
          fetch(`https://api.themoviedb.org/3/trending/movie/week?language=en-US`, options)
             .then(response => response.json())
-            .then(response => { setPopularMovies(response.results); console.log(response.results); })
+            .then(response => { SetIsSearching(false); setPopularMovies(response.results); console.log(response.results); })
             .catch(err => console.error(err));
         }, [currentPage]);
 
@@ -55,7 +58,9 @@ export function Home(props: MovieProps) {
     
 
   return (
-
+    <>
+    {isSearching && <FontAwesomeIcon icon={faSpinner} spin size="5x" aria-label="Loading..." aria-hidden="false" />}
+    {!isSearching &&
     <div className="container">
         <div className="slider-container text-white mb-3 scrollwheel rounded">
       <Slider {...settings} className="mb-4">
@@ -78,21 +83,11 @@ export function Home(props: MovieProps) {
         <div key={movie.id} className="border-secondary col-md-2 mb-3 mx-2 text-white thumbail" style={{cursor: 'pointer'}} onClick={() => handleMovieSelect(movie)}>
         <img className="card-img-top rounded " src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}/>
             <div className="card-body">
-        
-          {/* Render other movie details as needed */}
           </div>
         </div>
       ))}
       </div>
-      <div className="justify-content-center">
-      {/* <Pagination className="bg-dark">
-        <Pagination.First className="bg-dark" onClick={() => handlePageChange(1)} disabled={currentPage === 1} />
-        <Pagination.Prev className="bg-dark" onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1} />
-        
-        <Pagination.Next className="bg-dark" onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === 42520} />
-        <Pagination.Last onClick={() => handlePageChange(42520)} disabled={currentPage === 42520} />
-      </Pagination> */}
-      </div>
-    </div>
+    </div>}
+    </>
   );
 }
