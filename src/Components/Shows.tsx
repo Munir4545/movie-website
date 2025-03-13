@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { Pagination } from "react-bootstrap";
+import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { Movie, Show,  } from "./types";
 import Slider from 'react-slick';

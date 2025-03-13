@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Review } from "./types";
-import { useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import { options } from "../apikey";
 
