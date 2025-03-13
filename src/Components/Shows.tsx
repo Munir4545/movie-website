@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { Movie, Show,  } from "./types";
+import { Movie, Show, } from "./types";
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -29,70 +29,57 @@ const settings = {
 
 export function Shows(props: ShowProps) {
 
-    const [popularShows, setpopularShows] = useState<Show[]>([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    
-    const navigate = useNavigate();
+  const [popularShows, setpopularShows] = useState<Show[]>([]);
+  const [isSearching, SetIsSearching] = useState(false);
 
-    useEffect (() => {
-          
-         fetch(`https://api.themoviedb.org/3/trending/tv/week?language=en-US`, options)
-            .then(response => response.json())
-            .then(response => { setpopularShows(response.results); console.log(response.results)})
-            .catch(err => console.error(err));
-          
-        }, [currentPage]);
+  const navigate = useNavigate();
 
-        const handlePageChange = (pageNumber: number) => {
-            setCurrentPage(pageNumber);
-          };
-          const handleShowSelect = (show: Show) => {
-            props.setShow(show); // Set the movie ID in the state
-            props.setMovie(null);
-            console.log(props.useShow);
-            navigate(`/watch/${show.id}`); // Navigate to the MovieWatch component
-        };
+  useEffect(() => {
 
-        
-    
+    fetch(`https://api.themoviedb.org/3/trending/tv/week?language=en-US`, options)
+      .then(response => response.json())
+      .then(response => { setpopularShows(response.results); console.log(response.results) })
+      .catch(err => console.error(err));
+
+  }, []);
+
+  const handleShowSelect = (show: Show) => {
+    props.setShow(show); // Set the movie ID in the state
+    props.setMovie(null);
+    console.log(props.useShow);
+    navigate(`/watch/${show.id}`); // Navigate to the MovieWatch component
+  };
+
+
+
 
   return (
     <div className="container">
-        <div className="slider-container text-white mb-3 scrollwheel rounded">
-      <Slider {...settings} className="mb-4">
-        {popularShows.slice(0, 10).map((show, index) => (
-          <div key={show.id} className="mb-1 mt-3 wheelimg">
-            <img className="rounded" src={`https://image.tmdb.org/t/p/original/${show.backdrop_path}`} alt={`${show.name} slide`} />
-            <div className="translucent-background">
+      <div className="slider-container text-white mb-3 scrollwheel rounded">
+        <Slider {...settings} className="mb-4">
+          {popularShows.slice(0, 10).map((show) => (
+            <div key={show.id} className="mb-1 mt-3 wheelimg">
+              <img className="rounded" src={`https://image.tmdb.org/t/p/original/${show.backdrop_path}`} alt={`${show.name} slide`} />
+              <div className="translucent-background">
                 <h2 className="text-white">{show.name}</h2>
-                <p>{show.first_air_date.slice(0,4)} &#11088;{show.vote_average.toFixed(1)}</p>
+                <p>{show.first_air_date.slice(0, 4)} &#11088;{show.vote_average.toFixed(1)}</p>
                 <p className="text-light">{show.overview}</p>
-                <p className="rounded-pill px-4 py-3 bg-secondary text-center" style={{width: '11%', cursor:'pointer'}} onClick={() => handleShowSelect(show)}>Watch Now</p>
+                <p className="rounded-pill px-4 py-3 bg-secondary text-center" style={{ width: '11%', cursor: 'pointer' }} onClick={() => handleShowSelect(show)}>Watch Now</p>
               </div>
+            </div>
+          ))}
+        </Slider>
+      </div>
+      <div className="row align-items-center justify-content-center">
+        <h3 className="text-white mt-5 mb-4 text-center"> Top of The Week</h3>
+        {popularShows.map(show => (
+          <div key={show.id} className="border-secondary col-md-2 mb-3 mx-2 text-white thumbail" style={{ cursor: 'pointer' }} onClick={() => handleShowSelect(show)}>
+            <img className="card-img-top rounded" src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`} />
+            <div className="card-body">
+
+            </div>
           </div>
         ))}
-      </Slider>
-      </div>
-     <div className="row align-items-center justify-content-center">
-     <h3 className="text-white mt-5 mb-4 text-center"> Top of The Week</h3>
-    {popularShows.map(show => (
-        <div key={show.id} className="border-secondary col-md-2 mb-3 mx-2 text-white thumbail" style={{cursor: 'pointer'}} onClick={() => handleShowSelect(show)}>
-        <img className="card-img-top rounded" src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`}/>
-            <div className="card-body">
-        
-          {/* Render other movie details as needed */}
-          </div>
-        </div>
-      ))}
-      </div>
-      <div className="justify-content-center">
-      {/* <Pagination className="bg-dark">
-        <Pagination.First className="bg-dark" onClick={() => handlePageChange(1)} disabled={currentPage === 1} />
-        <Pagination.Prev className="bg-dark" onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1} />
-        
-        <Pagination.Next className="bg-dark" onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === 42520} />
-        <Pagination.Last onClick={() => handlePageChange(42520)} disabled={currentPage === 42520} />
-      </Pagination> */}
       </div>
     </div>
   );

@@ -18,6 +18,7 @@ export function MovieWatch(props: MovieProps) {
   const [seasonEp, setSeasonEp] = useState<ShowEp[]>([]);
   const [selectedEp, setSelectedEp] = useState<number>(1);
   const [selectedSeason, setSelectedSeason] = useState<number>(1);
+  const [isSearching, SetIsSearching] = useState(true);
   let { movieId } = useParams();
   
 
