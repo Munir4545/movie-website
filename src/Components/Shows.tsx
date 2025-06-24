@@ -47,7 +47,7 @@ export function Shows(props: ShowProps) {
     props.setShow(show); // Set the movie ID in the state
     props.setMovie(null);
     console.log(props.useShow);
-    navigate(`/watch/${show.id}`); // Navigate to the MovieWatch component
+    navigate(`/watch/tv/${show.id}-${show.name}`); // Navigate to the MovieWatch component
   };
 
 

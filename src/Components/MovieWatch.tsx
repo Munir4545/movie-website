@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Reviews } from "./Reviews";
 import { Movie, Show, ShowEp } from "./types";
 import { options } from "../apikey";
@@ -9,44 +9,60 @@ type MovieProps = {
   useMovie: Movie | null;
   setMovie: (movie: Movie | null) => void;
   useShow: Show | null;
+  setShow: (show: Show | null) => void;
 };
 
 
 export function MovieWatch(props: MovieProps) {
-  const { useMovie, useShow } = props;
+  const { useMovie, useShow, setMovie, setShow } = props;
   const [contentSrc, setContentSrc] = useState('');
   const [seasonEp, setSeasonEp] = useState<ShowEp[]>([]);
   const [selectedEp, setSelectedEp] = useState<number>(1);
   const [selectedSeason, setSelectedSeason] = useState<number>(1);
   const [isSearching, SetIsSearching] = useState(true);
-  let { movieId } = useParams();
-
+  let { mediaType, movieId } = useParams<{ mediaType: string; movieId: string }>();
+  movieId = movieId?.split('-')[0]
+  const navigate = useNavigate()
+  
 
   useEffect(() => {
-
+    if (useMovie?.id.toString() !== movieId || useShow?.id.toString() !== movieId) {
+      if (mediaType === 'tv') {
+        fetch(`https://api.themoviedb.org/3/tv/${movieId}?language=en-US`, options)
+        .then(response => {
+          return response.json();
+        })
+        .then((showData: Show) => {
+          setShow(showData);
+        })
+      } else if (mediaType === "movie") {
+        fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=en-US`, options)
+          .then(response => response.json())
+          .then((movieData: Movie) => {
+            setMovie(movieData);
+          })
+          .catch(movieError => console.error("Fatal: Could not fetch details for ID.", movieError));
+      }
+    }
 
     console.log('Fetching data for:', movieId, selectedSeason, selectedEp);
-
-    fetch(`https://api.themoviedb.org/3/tv/${movieId}?language=en-US`, options)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Not found');
-        }
-        return response.json();
-      })
-      .then(response => {
-        console.log('Fetch successful:', response);
-        if (response.seasons && response.seasons.length > 0) {
-          setSeasonEp(response.seasons);
-          setContentSrc(`https://vidfast.pro/tv/${movieId}/${selectedSeason}/${selectedEp}`);
-        } else {
-          throw new Error('No seasons data');
-        }
-      })
-      .catch(error => {
-        console.error('Fetch error:', error);
+    if (mediaType === "tv") {
+      fetch(`https://api.themoviedb.org/3/tv/${movieId}?language=en-US`, options)
+        .then(response => {
+          return response.json();
+        })
+        .then(response => {
+          console.log('Fetch successful:', response);
+          if (response.seasons && response.seasons.length > 0) {
+            setSeasonEp(response.seasons);
+            setContentSrc(`https://vidfast.pro/tv/${movieId}/${selectedSeason}/${selectedEp}`);
+          } else {
+            throw new Error('No seasons data');
+          }
+        })
+      } else {
         setContentSrc(`https://vidfast.pro/movie/${movieId}`);
-      });
+      }
       setTimeout(() => {
         window.scrollTo(0, 0)
       }, 1000);

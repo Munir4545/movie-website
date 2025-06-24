@@ -37,7 +37,7 @@ function App() {
             <Route path='/search' element={<Search inputValue={inputValue} setShow={handleSetShow} setInputValue={setInputValue} useMovie={useMovie} setMovie={handleSetMovie} />} />
             <Route path='/movies' element={<Home useMovie={useMovie} setShow={handleSetShow} setMovie={handleSetMovie} />} />
             <Route path='/shows' element={<Shows useShow={useShow} setShow={handleSetShow} setMovie={handleSetMovie} />} />
-            <Route path='/watch/:movieId' element={<MovieWatch useShow={useShow} useMovie={useMovie} setMovie={handleSetMovie} />} />
+            <Route path='/watch/:mediaType/:movieId' element={<MovieWatch useShow={useShow} setShow={setShow} useMovie={useMovie} setMovie={handleSetMovie} />} />
             <Route path="*" element={<Navigate to="/movies" />} />
           </Routes>
           <footer className="bg-dark text-white py-3">

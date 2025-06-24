@@ -80,14 +80,15 @@ export function Search(props: MovieSearch) {
   };
 
   const handleMovieSelect = (result: Movie | Show) => {
-    if ('title' in result) {
-      props.setMovie(result);
+    if (result.media_type === "movie") {
+      props.setMovie(result as Movie);
       props.setShow(null);
+      navigate(`/watch/movie/${result.id}-${(result as Movie).title}`)
     } else {
-      props.setShow(result);
+      props.setShow(result as Show);
       props.setMovie(null);
+      navigate(`/watch/tv/${result.id}-${(result as Show).name}`)
     }
-    navigate(`/watch/${result.id}`);
   };
 
 
