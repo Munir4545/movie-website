@@ -21,7 +21,7 @@ export function MovieWatch(props: MovieProps) {
   const [selectedSeason, setSelectedSeason] = useState<number>(1);
   const [isSearching, SetIsSearching] = useState(true);
   let { movieId } = useParams();
-  
+
 
   useEffect(() => {
 
@@ -39,15 +39,18 @@ export function MovieWatch(props: MovieProps) {
         console.log('Fetch successful:', response);
         if (response.seasons && response.seasons.length > 0) {
           setSeasonEp(response.seasons);
-          setContentSrc(`https://vidsrc.me/embed/tv?tmdb=${movieId}&season=${selectedSeason}&episode=${selectedEp}`);
+          setContentSrc(`https://vidfast.pro/tv/${movieId}/${selectedSeason}/${selectedEp}`);
         } else {
           throw new Error('No seasons data');
         }
       })
       .catch(error => {
         console.error('Fetch error:', error);
-        setContentSrc(`https://vidsrc.me/embed/movie?tmdb=${movieId}`);
+        setContentSrc(`https://vidfast.pro/movie/${movieId}`);
       });
+      setTimeout(() => {
+        window.scrollTo(0, 0)
+      }, 1000);
   }, [movieId, selectedSeason, selectedEp]);
 
 

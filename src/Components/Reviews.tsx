@@ -46,7 +46,7 @@ export function Reviews(props: ReviewProps) {
               .catch(err => console.error(err));
           });
           
-    }, []);
+    }, [props.movieId]);
 
 
     return (
