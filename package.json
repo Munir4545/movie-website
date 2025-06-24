@@ -4,12 +4,6 @@
   "private": true,
   "dependencies": {
     "@cliqz/adblocker-electron": "^1.26.16",
-<<<<<<< HEAD
-=======
-    "@fortawesome/free-solid-svg-icons": "^6.5.2",
-    "@fortawesome/react-fontawesome": "^0.2.0",
-    "@movie-web/providers": "^2.2.2",
->>>>>>> d998ed9f0a40982b650341ee7943e7bc4e76048f
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
