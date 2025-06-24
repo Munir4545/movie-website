@@ -1,5 +1,4 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { Pagination } from "react-bootstrap";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Movie, ApiResponse, Show } from "./types";
 import { options } from "../apikey";
